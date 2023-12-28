@@ -22,7 +22,7 @@ export class CreateTableUser1703780407272 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'createdAt',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },

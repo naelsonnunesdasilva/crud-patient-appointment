@@ -1,13 +1,26 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PatientEntity } from './patient.entity';
 
-@Entity('Arquivo')
-export class ArchiveOrmEntity {
+@Entity('Appointment')
+export class AppointmentEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'urlS3' })
-  public urlS3: string;
+  @Column()
+  public fk_patient: number;
 
-  @OneToOne('ContentOrmEntity', 'archive')
-  public content: any;
+  @Column()
+  appointment: Date;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @OneToOne(() => PatientEntity, (patient) => patient.id)
+  public patient: PatientEntity;
 }

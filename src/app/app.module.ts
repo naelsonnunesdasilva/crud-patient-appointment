@@ -1,16 +1,21 @@
 import { Module } from '@nestjs/common';
-
-import { databaseProviders } from '../config/database.providers';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PatientModule } from './modules/patient/patient.module';
+import { AppointmentModule } from './modules/appointment/appointment.module';
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [, ...databaseProviders],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'test',
+      entities: [PatientModule, AppointmentModule],
+      synchronize: true,
+    }),
+    PatientModule
+  ],
 })
-export class AppModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer
-  //     .apply(AuthMiddleware)
-  //     .forRoutes('');
-  // }
-}
+export class AppModule {}
