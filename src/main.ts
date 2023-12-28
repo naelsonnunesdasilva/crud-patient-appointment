@@ -6,7 +6,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Crud Patient and Appointment')
-    .setDescription('The system make a crud in the entities patient and Appointment with Nest.js Framework')
+    .setDescription(
+      'The system make a crud in the entities patient and Appointment with Nest.js Framework',
+    )
     .setVersion('1.0')
     .addTag('crud-patient-appointment')
     .build();

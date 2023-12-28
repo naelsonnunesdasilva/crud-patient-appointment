@@ -1,6 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-
 @Entity('Arquivo')
 export class ArchiveOrmEntity {
   @PrimaryGeneratedColumn()

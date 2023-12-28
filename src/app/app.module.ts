@@ -3,9 +3,7 @@ import { Module } from '@nestjs/common';
 import { databaseProviders } from '../config/database.providers';
 
 @Module({
-  imports: [
-    
-  ],
+  imports: [],
   controllers: [],
   providers: [, ...databaseProviders],
 })
