@@ -18,6 +18,9 @@ export class AppointmentEntity {
   @Column()
   appointment: Date;
 
+  @Column()
+  status: number;
+
   @CreateDateColumn()
   created_at: Date;
 

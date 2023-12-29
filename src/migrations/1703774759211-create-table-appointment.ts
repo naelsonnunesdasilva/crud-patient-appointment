@@ -22,6 +22,11 @@ export class CreateTableAppointment1703774759211 implements MigrationInterface {
             type: 'timestamp',
           },
           {
+            name: 'status',
+            type: 'int',
+            default: 1,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

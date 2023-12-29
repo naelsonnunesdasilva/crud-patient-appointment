@@ -26,8 +26,10 @@ export class CreateTablePatient1703774249029 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            isNullable: true,
             name: 'deleted_at',
             type: 'timestamp',
+            default: null,
           },
           {
             name: 'created_at',

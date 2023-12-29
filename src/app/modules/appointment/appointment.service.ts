@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAppointmentDto } from './dto/create-appointment.dto';
-import { UpdateAppointmentDto } from './dto/update-appointment.dto';
+import { AppointmentDto } from './dto/appointment.dto';
+import { AppointmentEntity } from 'src/database/appointment.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AppointmentService {
-  create(createAppointmentDto: CreateAppointmentDto) {
-    return 'This action adds a new appointment';
+  constructor(
+    @InjectRepository(AppointmentEntity)
+    private readonly repository: Repository<AppointmentEntity>,
+  ) { }
+
+  async create(createAppointmentDto: AppointmentDto) {
+    return await this.repository.save(createAppointmentDto);
   }
 
-  findAll() {
-    return `This action returns all appointment`;
+  async findAllForFkPatient(fk_patient: number) {
+    return await this.repository.find({ where: { fk_patient }});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} appointment`;
+  async findOne(id: number) {
+    return await this.repository.findOne({ where: { id } });
   }
 
-  update(id: number, updateAppointmentDto: UpdateAppointmentDto) {
-    return `This action updates a #${id} appointment`;
+  async update(id: number, updateAppointmentDto: AppointmentDto) {
+    return await this.repository.save(updateAppointmentDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} appointment`;
+  async remove(id: number) {
+    const appointment = await this.repository.findOne({ where: { id } });
+    return await this.repository.remove(appointment);
   }
 }
