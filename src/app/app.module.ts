@@ -4,6 +4,9 @@ import { PatientModule } from './modules/patient/patient.module';
 import { AppointmentModule } from './modules/appointment/appointment.module';
 import { PatientEntity } from 'src/database/patient.entity';
 import { AppointmentEntity } from 'src/database/appointment.entity';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './modules/auth/auth.guard';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -18,7 +21,16 @@ import { AppointmentEntity } from 'src/database/appointment.entity';
       synchronize: true,
     }),
     PatientModule,
-    AppointmentModule
+    AppointmentModule,
+    AuthModule
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  
+}
