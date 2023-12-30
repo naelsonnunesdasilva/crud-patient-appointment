@@ -27,6 +27,12 @@ export class AppointmentService {
     return await this.repository.save(updateAppointmentDto);
   }
 
+  async confirm(id: number) {
+    const updateAppointmentDto = await this.repository.findOne({ where: { id }});
+    updateAppointmentDto.status = 2;
+    return await this.repository.save(updateAppointmentDto);
+  }
+
   async remove(id: number) {
     const appointment = await this.repository.findOne({ where: { id } });
     return await this.repository.remove(appointment);

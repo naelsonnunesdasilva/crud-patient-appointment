@@ -10,7 +10,7 @@ export class AppointmentDto {
 
     @ApiProperty({
         example: 1,
-        description: 'Identificador único do paciente ao qual pertence o agendamento. Relação  1:1 no banco',
+        description: 'Identificador único do paciente ao qual pertence o agendamento. Relação  1:N no banco',
     })
     fk_patient: number;
 

@@ -51,11 +51,9 @@ export class AppointmentController {
   }
 
   @Patch(':id/confirm')
-  confirm(@Param('id') id: string, @Body() updateAppointmentDto: AppointmentDto) {
+  confirm(@Param('id') id: string) {
     try {
-      updateAppointmentDto.status = 2;
-
-      return this.appointmentService.update(+id, updateAppointmentDto);
+      return this.appointmentService.confirm(+id);
     } catch (error) {
       throw new HttpException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,

@@ -21,12 +21,12 @@ export class PatientEntity {
   @Column()
   public cpf: string;
 
-  @Column({ nullable: true })
-  public deleted_at?: Date | null;
+  @Column({ nullable: true})
+  public deleted_at?: Date;
 
-  @OneToMany(() => AppointmentEntity, (appointment) => appointment)
+  @OneToMany(() => AppointmentEntity, (appointment) => appointment.patient)
   public medicalHistory: AppointmentEntity[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 }

@@ -2,7 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToOne,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PatientEntity } from './patient.entity';
@@ -16,14 +17,15 @@ export class AppointmentEntity {
   public fk_patient: number;
 
   @Column()
-  appointment: Date;
+  public appointment: Date;
 
   @Column()
-  status: number;
+  public status: number;
 
   @CreateDateColumn()
   created_at: Date;
 
-  @OneToOne(() => PatientEntity, (patient) => patient.id)
+  @ManyToOne(() => PatientEntity, patient => patient.medicalHistory)
+  @JoinColumn({ name: 'fk_patient' })
   public patient: PatientEntity;
 }
