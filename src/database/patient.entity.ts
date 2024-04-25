@@ -21,7 +21,7 @@ export class PatientEntity {
   @Column()
   public cpf: string;
 
-  @Column({ nullable: true})
+  @Column({ nullable: true })
   public deleted_at?: Date;
 
   @OneToMany(() => AppointmentEntity, (appointment) => appointment.patient)

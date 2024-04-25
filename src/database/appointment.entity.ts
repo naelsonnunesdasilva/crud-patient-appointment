@@ -25,7 +25,7 @@ export class AppointmentEntity {
   @CreateDateColumn()
   created_at: Date;
 
-  @ManyToOne(() => PatientEntity, patient => patient.medicalHistory)
+  @ManyToOne(() => PatientEntity, (patient) => patient.medicalHistory)
   @JoinColumn({ name: 'fk_patient' })
   public patient: PatientEntity;
 }

@@ -9,14 +9,17 @@ export class PatientService {
   constructor(
     @InjectRepository(PatientEntity)
     private readonly repository: Repository<PatientEntity>,
-  ) { }
+  ) {}
 
   async create(createPatientDto: PatientDto) {
     return await this.repository.save(createPatientDto);
   }
 
   async findAll() {
-    return await this.repository.find({where: { deleted_at: null }, relations: ['medicalHistory']});
+    return await this.repository.find({
+      where: { deleted_at: null },
+      relations: ['medicalHistory'],
+    });
   }
 
   async findOne(id: number) {

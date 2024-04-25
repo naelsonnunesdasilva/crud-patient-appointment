@@ -9,14 +9,14 @@ export class AppointmentService {
   constructor(
     @InjectRepository(AppointmentEntity)
     private readonly repository: Repository<AppointmentEntity>,
-  ) { }
+  ) {}
 
   async create(createAppointmentDto: AppointmentDto) {
     return await this.repository.save(createAppointmentDto);
   }
 
   async findAllForFkPatient(fk_patient: number) {
-    return await this.repository.find({ where: { fk_patient }});
+    return await this.repository.find({ where: { fk_patient } });
   }
 
   async findOne(id: number) {
@@ -28,7 +28,9 @@ export class AppointmentService {
   }
 
   async confirm(id: number) {
-    const updateAppointmentDto = await this.repository.findOne({ where: { id }});
+    const updateAppointmentDto = await this.repository.findOne({
+      where: { id },
+    });
     updateAppointmentDto.status = 2;
     return await this.repository.save(updateAppointmentDto);
   }

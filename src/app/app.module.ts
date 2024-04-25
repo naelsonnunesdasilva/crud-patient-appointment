@@ -14,7 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     PatientModule,
     AppointmentModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [
     {
@@ -23,6 +23,4 @@ import { ConfigModule } from '@nestjs/config';
     },
   ],
 })
-export class AppModule {
-  
-}
+export class AppModule {}
